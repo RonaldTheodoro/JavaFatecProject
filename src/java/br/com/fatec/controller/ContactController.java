@@ -1,14 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.fatec.controller;
 
-/**
- *
- * @author ronaldtheodoro
- */
+import java.util.ArrayList;
+import java.util.List;
+import br.com.fatec.bean.Contact;
+
+
 public class ContactController {
     
+    public Contact insertContact(Contact contact) {
+        contact.setAddress("address");
+        return contact;
+    }
+    
+    public Contact alterContact(Contact contact) {
+        return contact;
+    }
+    
+    public Contact removeContact(Contact contact) {
+        return contact;
+    }
+    
+    public List<Contact> listContact(Contact contact) {
+        List<Contact> contacts = new ArrayList();
+        return contacts;
+    }
 }
