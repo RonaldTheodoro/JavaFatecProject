@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <form name="insertContact" action="validateInsertContact.jsp" method="POST">
+        <p>Name: <input type="text" name="name"></p>
+        <p>Rg: <input type="text" name="rg"></p>
+        <p>Cpf: <input type="text" name="cpf"></p>
+        <p>Address: <input type="text" name="address"></p>
+        <p><input type="submit" name="Search"></p>
+    </form>
 </body>
 </html>
