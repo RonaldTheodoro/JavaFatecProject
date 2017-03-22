@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <form name="insertUser" action="validateInsertUser.jsp" method="POST">
+        <p>Name: <input type="text" name="name"></p>
+        <p>Status: <input type="text" name="status"></p>
+        <p>Type: <input type="text" name="type"></p>
+        <p>: <input type="submit" name="Send"></p>
+    </form>
 </body>
 </html>
