@@ -13,7 +13,7 @@
     user.setStatus(status);
     user.setType(type);
     
-    UserController userController = new UserController(user);
+    UserController userController = new UserController();
     user = userController.insertUser(user);
 %>
 
