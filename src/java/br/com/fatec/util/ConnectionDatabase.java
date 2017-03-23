@@ -8,7 +8,7 @@ public class ConnectionDatabase {
     public Connection getConnection() throws SQLException, ClassNotFoundException {
         try {
             Class.forName("org.sqlite.JDBC");
-            return DriverManager.getConnection("jdbc:sqlite:/home/ronaldtheodoro/Documentos/Java/FatecJavaProject/db.sqlite3");
+            return DriverManager.getConnection("jdbc:sqlite:db.sqlite3");
         } catch (SQLException error) {
             throw new RuntimeException(error);
         }
