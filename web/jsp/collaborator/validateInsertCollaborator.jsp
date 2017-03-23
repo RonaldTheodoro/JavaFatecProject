@@ -6,13 +6,10 @@
     String name = request.getParameter("name");
     String type = request.getParameter("type");
     
-    Colaborator colaborator = new Colaborator();
+    Colaborator colaborator = new Colaborator(name, type);
     
-    colaborator.setNome(name);
-    colaborator.setType(type);
-    
-    ColaboratorController colaboratorController = new ColaboratorController();
-    colaborator = colaboratorController.insertColaborator(colaborator);
+    ColaboratorController colaboratorController = new ColaboratorController(colaborator);
+    colaborator = colaboratorController.insertColaborator();
 %>
 <!DOCTYPE html>
 <html>
