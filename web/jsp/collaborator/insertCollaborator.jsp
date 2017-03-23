@@ -9,10 +9,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-    <from name="insertColaborator" action="validateInsertCollaborator.jsp" method="POST">
+    <form name="insertColaborator" action="validateInsertCollaborator.jsp" method="POST">
         <p>Name: <input type="text" name="name"></p>
         <p>Type: <input type="text" name="type"></p>
         <p><input type="submit" name="Search"></p>
-    </from>
+    </form>
 </body>
 </html>
