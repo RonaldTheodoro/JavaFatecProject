@@ -3,7 +3,7 @@
 <%@page import="br.com.fatec.controller.UserController" %>
 
 <%
-    int id = Integer.parserInt(request.getParameter("id"));
+    int id = Integer.parseInt(request.getParameter("id"));
     User user = new User();
     user.setId(id);
     UserController userController = new UserController();
