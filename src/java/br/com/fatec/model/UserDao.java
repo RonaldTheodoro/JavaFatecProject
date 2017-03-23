@@ -11,19 +11,19 @@ import java.util.List;
 
 public class UserDao {
     private final Connection connection;
+    private PreparedStatement preparedStatement;
+    private ResultSet resultSet;
     
     public UserDao() throws SQLException, ClassNotFoundException {
         this.connection = new ConnectionDatabase().getConnection();
     }
     
     public User search(User user) throws SQLException {
-        String SQL = "SELECT * FROM user WHERE id ?";
+        String SQL = "SELECT * FROM user WHERE id = ?";
         
-        try (
-            PreparedStatement preparedStatement = 
-                this.connection.prepareStatement(SQL)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setInt(1, user.getId());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             
             while (resultSet.next()) {
                 user.setId(resultSet.getInt(1));
@@ -43,12 +43,11 @@ public class UserDao {
         List<User> usersList = new ArrayList<>();
         String SQL = "SELECT * FROM user WHERE login like ?";
         
-        PreparedStatement preparedStatement =
-            this.connection.prepareStatement(SQL);
+        preparedStatement = connection.prepareStatement(SQL);
         
         preparedStatement.setString(1, "%" + user.getLogin() + "%");
         
-        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet = preparedStatement.executeQuery();
         
         while (resultSet.next()) {
             User userData = new User();
@@ -68,7 +67,7 @@ public class UserDao {
     public void insert(User user) throws SQLException {
         String SQL = "INSER INTO user (login, password, status, tipo) values (?, ?, ?, ?, ?)";
         
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        preparedStatement = connection.prepareStatement(SQL);
         
         preparedStatement.setString(1, user.getLogin());
         preparedStatement.setString(2, user.getPassword());
@@ -81,7 +80,7 @@ public class UserDao {
     
     public void exclude(User user) throws SQLException {
         String SQL = "DELETE FROM user WHERE id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        preparedStatement = connection.prepareStatement(SQL);
         
         preparedStatement.setInt(1, user.getId());
         
@@ -92,7 +91,7 @@ public class UserDao {
     
     public User alter(User user) throws SQLException {
         String SQL = "UPDATE user SET login = ?, password = ?, status = ?, type = ? WHERE id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        preparedStatement = connection.prepareStatement(SQL);
         
         preparedStatement.setString(1, user.getLogin());
         preparedStatement.setString(2, user.getPassword());
@@ -108,12 +107,12 @@ public class UserDao {
     
     public User validateLogin(User user) throws SQLException {
         String SQL = "SELECT * FROM user WHERE id = ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        preparedStatement = connection.prepareStatement(SQL);
         
         preparedStatement.setString(1, user.getLogin());
         preparedStatement.setString(2, user.getPassword());
         
-        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet = preparedStatement.executeQuery();
         
         while (resultSet.next()) {
             user.setId(resultSet.getInt(1));
