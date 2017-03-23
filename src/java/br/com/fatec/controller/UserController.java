@@ -36,7 +36,7 @@ public class UserController {
         return user;
     }
     
-    public User validateUser(User user)
+    public User validateLogin(User user)
         throws SQLException, ClassNotFoundException {
         
         UserDao userDao = new UserDao();
