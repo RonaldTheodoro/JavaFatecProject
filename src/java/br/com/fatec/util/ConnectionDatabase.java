@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.fatec.util;
 
-/**
- *
- * @author ronaldtheodoro
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class ConnectionDatabase {
-    
+    public Connection getConnection() throws SQLException, ClassNotFoundException {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            return DriverManager.getConnection("jdbc:sqlite:/home/ronaldtheodoro/Documentos/Java/FatecJavaProject/db.sqlite3");
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
+    }
 }
