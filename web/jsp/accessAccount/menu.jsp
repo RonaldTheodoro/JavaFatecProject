@@ -12,7 +12,7 @@
     user.setPassword(password);
     
     UserController userController = new UserController();
-    user = userController.validateUser(user);
+    user = userController.validateLogin(user);
 %>
 <!DOCTYPE html>
 <html>
