@@ -25,7 +25,7 @@ public class UserDao {
         try {
             prepareStatement(sql);
             statement.setInt(1, user.getId());
-            resultSet = statement.executeQuery();
+            executeQuery();
             
             while (resultSet.next()) {
                 user.setId(resultSet.getInt(1));
@@ -50,7 +50,7 @@ public class UserDao {
         
         statement.setString(1, "%" + user.getName() + "%");
         
-        resultSet = statement.executeQuery();
+        executeQuery();
         
         while (resultSet.next()) {
             User userData = new User();
@@ -122,7 +122,7 @@ public class UserDao {
         statement.setString(1, user.getLogin());
         statement.setString(2, user.getPassword());
         
-        resultSet = statement.executeQuery();
+        executeQuery();
         
         while (resultSet.next()) {
             user.setId(resultSet.getInt(1));
@@ -138,5 +138,9 @@ public class UserDao {
     
     private void prepareStatement(String sql) throws SQLException {
         statement = connection.prepareStatement(sql);
+    }
+    
+    private void executeQuery() throws SQLException {
+        resultSet = statement.executeQuery();
     }
 }
