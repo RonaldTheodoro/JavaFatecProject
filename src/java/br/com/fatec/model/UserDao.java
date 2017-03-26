@@ -28,12 +28,7 @@ public class UserDao {
             executeQuery();
             
             while (resultSet.next()) {
-                user.setId(resultSet.getInt(1));
-                user.setName(resultSet.getString(2));
-                user.setLogin(resultSet.getString(3));
-                user.setPassword(resultSet.getString(4));
-                user.setStatus(resultSet.getString(5));
-                user.setType(resultSet.getString(6));
+                user = getPoputateUser();
             }
             return user;
         } catch (SQLException error) {
@@ -59,15 +54,7 @@ public class UserDao {
         executeQuery();
         
         while (resultSet.next()) {
-            User userData = new User();
-            
-            userData.setId(resultSet.getInt(1));
-            userData.setLogin(resultSet.getString(2));
-            userData.setPassword(resultSet.getString(3));
-            userData.setStatus(resultSet.getString(4));
-            userData.setType(resultSet.getString(5));
-            
-            usersList.add(userData);
+            usersList.add(getPoputateUser());
         }
         try {
             dispose();
@@ -142,12 +129,7 @@ public class UserDao {
         executeQuery();
         
         while (resultSet.next()) {
-            user.setId(resultSet.getInt(1));
-            user.setName(resultSet.getString(2));
-            user.setLogin(resultSet.getString(3));
-            user.setPassword(resultSet.getString(4));
-            user.setStatus(resultSet.getString(5));
-            user.setType(resultSet.getString(6));
+            user = getPoputateUser();
         }
         try {
             dispose();
@@ -156,6 +138,20 @@ public class UserDao {
         }
         return user;
     }
+    
+    private User getPoputateUser() throws SQLException {
+        User user = new User();
+            
+        user.setId(resultSet.getInt(1));
+        user.setName(resultSet.getString(2));
+        user.setLogin(resultSet.getString(3));
+        user.setPassword(resultSet.getString(4));
+        user.setStatus(resultSet.getString(5));
+        user.setType(resultSet.getString(6));
+        
+        return user;
+    }
+            
     
     private void prepareStatement(String sql) throws SQLException {
         statement = connection.prepareStatement(sql);
