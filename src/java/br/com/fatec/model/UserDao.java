@@ -69,8 +69,11 @@ public class UserDao {
             
             usersList.add(userData);
         }
-        resultSet.close();
-        statement.close();
+        try {
+            dispose();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
         return usersList;
     }
     
@@ -86,8 +89,11 @@ public class UserDao {
         statement.setString(4, user.getStatus());
         statement.setString(5, user.getType());
         
-        statement.execute();
-        statement.close();
+        try {
+            dispose();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
         return user;
     }
     
@@ -97,9 +103,11 @@ public class UserDao {
         
         statement.setInt(1, user.getId());
         
-        statement.execute();
-        statement.close();
-        connection.close();
+        try {
+            dispose();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
         return user;
     }
     
@@ -115,8 +123,11 @@ public class UserDao {
         statement.setString(5, user.getType());
         statement.setInt(6, user.getId());
         
-        statement.execute();
-        statement.close();
+        try {
+            dispose();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
         
         return user;
     }
@@ -138,7 +149,11 @@ public class UserDao {
             user.setStatus(resultSet.getString(5));
             user.setType(resultSet.getString(6));
         }
-        statement.close();
+        try {
+            dispose();
+        } catch (SQLException error) {
+            throw new RuntimeException(error);
+        }
         return user;
     }
     
