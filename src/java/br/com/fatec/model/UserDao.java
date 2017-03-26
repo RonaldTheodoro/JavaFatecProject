@@ -38,6 +38,12 @@ public class UserDao {
             return user;
         } catch (SQLException error) {
             throw new RuntimeException(error);
+        } finally {
+            try {
+                dispose();
+            } catch (SQLException error) {
+                throw new RuntimeException(error);
+            }
         }
     }
     
@@ -142,5 +148,16 @@ public class UserDao {
     
     private void executeQuery() throws SQLException {
         resultSet = statement.executeQuery();
+    }
+    
+    private void dispose() throws SQLException {
+        if (resultSet != null)
+            resultSet.close();
+        
+        if (statement != null)
+            statement.close();
+        
+        if (connection != null)
+            connection.close();
     }
 }
