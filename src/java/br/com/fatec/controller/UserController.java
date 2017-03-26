@@ -1,7 +1,6 @@
 package br.com.fatec.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import br.com.fatec.bean.User;
 import br.com.fatec.model.UserDao;
@@ -9,38 +8,34 @@ import br.com.fatec.model.UserDao;
 
 
 public class UserController {
-    
-    public User insertUser(User user) {
-        user.setType("Test Type");
-        return user;
+    private final UserDao userDao;
+
+    public UserController() throws SQLException, ClassNotFoundException {
+        this.userDao = new UserDao();
     }
     
-    public User alterUser(User user) {
-        return user;
+    public User insertUser(User user) throws SQLException {
+        return userDao.insert(user);
     }
     
-    public User removeUser(User user) {
-        return user;
+    public User alterUser(User user) throws SQLException {
+        return userDao.alter(user);
     }
     
-    public List<User> listUser(User user) {
-        List<User> userArray = new ArrayList();
+    public User removeUser(User user) throws SQLException {
+        return userDao.exclude(user);
+    }
+    
+    public List<User> listUser(User user) throws SQLException {
+        List<User> userArray = userDao.list(user);
         return userArray;
     }
     
-    public User searchUser(User user) 
-        throws SQLException, ClassNotFoundException {
-        
-        UserDao userDao = new UserDao();
-        user = userDao.search(user);
-        return user;
+    public User searchUser(User user) throws SQLException {
+        return userDao.search(user);
     }
     
-    public User validateLogin(User user)
-        throws SQLException, ClassNotFoundException {
-        
-        UserDao userDao = new UserDao();
-        user = userDao.validateLogin(user);
-        return user;
+    public User validateLogin(User user) throws SQLException {
+        return userDao.validateLogin(user);
     }
 }
