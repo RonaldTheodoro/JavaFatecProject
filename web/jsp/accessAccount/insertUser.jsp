@@ -10,9 +10,11 @@
 <body>
     <form name="insertUser" action="validateInsertUser.jsp" method="POST">
         <p>Name: <input type="text" name="name"></p>
+        <p>Login: <input type="text" name="name"></p>
+        <p>Password: <input type="text" name="name"></p>
         <p>Status: <input type="text" name="status"></p>
         <p>Type: <input type="text" name="type"></p>
-        <p>: <input type="submit" name="Send"></p>
+        <p><input type="submit" name="Send"></p>
     </form>
 </body>
 </html>
